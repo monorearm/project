@@ -1,5 +1,5 @@
 var matrix = []
-var side = 7;
+var side = 15;
 var grassArr = [];
 var xotakerArr = [];
 var predatorArr = [];
