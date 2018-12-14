@@ -1,4 +1,5 @@
-class Xotaker extends Entity {
+var Entity = require("./entity.js")
+module.exports = class Xotaker extends Entity {
     constructor(x, y) {
         super(x, y)
         this.array = xotakerArr

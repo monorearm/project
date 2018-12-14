@@ -1,12 +1,11 @@
-class Grass extends Entity {
+var Entity = require("./entity.js")
+module.exports = class Grass extends Entity {
     constructor(x, y) {
         super(x, y)
         this.array = grassArr
         this.multiply = 0
 
     }
-
-
 
     mult() {
         var empty = random(this.chooseCell(0))

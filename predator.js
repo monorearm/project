@@ -1,4 +1,5 @@
-class Predator extends Entity {
+var Entity = require("./entity.js")
+module.exports = class Predator extends Entity {
     constructor(x, y) {
         super(x, y)
         this.array = predatorArr

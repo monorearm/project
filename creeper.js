@@ -1,4 +1,5 @@
-class Creeper extends Entity {
+var Entity = require("./entity.js")
+module.exports=class Creeper extends Entity {
     constructor(x, y) {
         super(x, y)
         this.array = creeperArr

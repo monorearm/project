@@ -1,6 +1,6 @@
+var Entity = require("./entity.js")
 var monoremsJointEnergy = 150;
-
-class Monorem extends Entity {
+module.exports =class Monorem extends Entity {
     constructor(x, y) {
         super(x, y)
         this.array = monoremArr
