@@ -11,7 +11,7 @@ module.exports = class Grass extends Entity {
         var array = this.chooseCell(0)
         var empty = array[Math.floor(Math.random() * array.length)];
         this.multiply++
-        if (empty && this.multiply > 0) {
+        if (empty && this.multiply > 0 ) {
             var newX = empty[0]
             var newY = empty[1]
             matrix[newY][newX] = 1

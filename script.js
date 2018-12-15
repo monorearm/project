@@ -3,6 +3,7 @@
     var side = 20;
     var m = 30;
     var n =30;
+    
 
     function setup() {
         frameRate(5);

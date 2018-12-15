@@ -67,7 +67,7 @@ for (var y = 0; y < matrix.length; y++) {
 
 
 
-setInterval(drawServerayin, 1000)
+setInterval(drawServerayin, 200)
 function drawServerayin() {
     var entities = [].concat(grassArr, xotakerArr, predatorArr, creeperArr, monoremArr)
     for (var i in entities) {
@@ -76,11 +76,12 @@ function drawServerayin() {
             entities[i].next_tick()
         }
     }
-    
+    io.sockets.emit("matrix", matrix)
+
 }
 console.log(matrix)
 io.on("connection", function (socket) {
-    io.sockets.emit("matrix", matrix)
+
 });
 
 
