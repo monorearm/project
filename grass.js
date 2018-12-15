@@ -8,7 +8,8 @@ module.exports = class Grass extends Entity {
     }
 
     mult() {
-        var empty = random(this.chooseCell(0))
+        var array = this.chooseCell(0)
+        var empty = array[Math.floor(Math.random() * array.length)];
         this.multiply++
         if (empty && this.multiply > 0) {
             var newX = empty[0]

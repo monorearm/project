@@ -1,3 +1,4 @@
+var funcs = require("./functions.js");
 module.exports = class Entity {
     constructor(x, y) {
         this.x = x;
@@ -17,7 +18,7 @@ module.exports = class Entity {
             [this.x + 1, this.y + 1]
         ]
 
-        this.directions = this.directions.filter(isPosCorrect)
+        this.directions = this.directions.filter(funcs.isPosCorrect)
 
     }
 
@@ -26,7 +27,7 @@ module.exports = class Entity {
         for (var i in this.directions) {
             var x = this.directions[i][0]
             var y = this.directions[i][1]
-            if (isPosCorrect([x, y])) {
+            if (funcs.isPosCorrect([x, y])) {
                 if (matrix[y][x] == character) {
                     found.push(this.directions[i])
                 }

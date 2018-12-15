@@ -1,6 +1,7 @@
+var funcs = require("./functions.js");
 var Entity = require("./entity.js")
 var monoremsJointEnergy = 150;
-module.exports =class Monorem extends Entity {
+module.exports = class Monorem extends Entity {
     constructor(x, y) {
         super(x, y)
         this.array = monoremArr
@@ -9,25 +10,26 @@ module.exports =class Monorem extends Entity {
     move() {
         this.getNewDirections();
         var freeCells = this.chooseCell(0).concat(this.chooseCell(1));
-        var cell = random(freeCells);
+        var cell = freeCells[Math.floor(Math.random() * freeCells.length)];
         if (cell) {
             monoremsJointEnergy--;
-            swap([this.x, this.y], cell);
+            funcs.swap([this.x, this.y], cell);
         }
     }
 
     eat() {
         var foodNear = this.chooseCell(1)
-        var food = random(foodNear);
+        var food = foodNear[Math.floor(Math.random() * foodNear.length)];
         if (food) {
-            getEntityByPos(food).die();
-            swap([this.x, this.y], food);
+            funcs.getEntityByPos(food).die();
+            funcs.swap([this.x, this.y], food);
             monoremsJointEnergy += 4
         }
     }
 
     mult() {
-        var empty = random(this.chooseCell(0))
+        var array = this.chooseCell(0)
+        var empty = array[Math.floor(Math.random() * array.length)];
         if (empty && this.energy_per_monorem >= 25) {
             var newX = empty[0]
             var newY = empty[1]

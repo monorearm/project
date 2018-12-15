@@ -1,3 +1,4 @@
+var funcs = require("./functions.js");
 var Entity = require("./entity.js")
 module.exports = class Xotaker extends Entity {
     constructor(x, y) {
@@ -8,7 +9,8 @@ module.exports = class Xotaker extends Entity {
 
 
     mult() {
-        var empty = random(this.chooseCell(0))
+        var array = this.chooseCell(0)
+        var empty = array[Math.floor(Math.random() * array.length)];
         if (empty && this.energy > 10) {
             var newX = empty[0]
             var newY = empty[1]
@@ -21,7 +23,8 @@ module.exports = class Xotaker extends Entity {
 
     move() {
         this.getNewDirections();
-        var empty = random(this.chooseCell(0))
+        var array = this.chooseCell(0)
+        var empty = array[Math.floor(Math.random() * array.length)];
         if (empty) {
             this.energy--;
             var newX = empty[0]
@@ -35,10 +38,11 @@ module.exports = class Xotaker extends Entity {
     }
 
     eat() {
-        var food = random(this.chooseCell(1))
+        var array = this.chooseCell(1)
+        var food = array[Math.floor(Math.random() * array.length)];
         if (food) {
-            getEntityByPos(food).die();
-            swap([this.x, this.y], food);
+            funcs.getEntityByPos(food).die();
+            funcs.swap([this.x, this.y], food);
             this.energy += 2
         }
     }
