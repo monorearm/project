@@ -10,8 +10,8 @@ module.exports = class Predator extends Entity {
 
 
     mult() {
-        var array = this.chooseCell(0)
-        var empty = array[Math.floor(Math.random() * array.length)];
+        var cell = this.chooseCell(0)
+        var empty = cell[Math.floor(Math.random() * cell.length)];
         if (empty && this.energy > 15) {
             var newX = empty[0]
             var newY = empty[1]

@@ -28,8 +28,8 @@ module.exports = class Monorem extends Entity {
     }
 
     mult() {
-        var array = this.chooseCell(0)
-        var empty = array[Math.floor(Math.random() * array.length)];
+        var cell = this.chooseCell(0)
+        var empty = cell[Math.floor(Math.random() * cell.length)];
         if (empty && this.energy_per_monorem >= 25) {
             var newX = empty[0]
             var newY = empty[1]

@@ -22,15 +22,17 @@ var Creeper = require("./creeper.js");
 var Monorem = require("./monorem.js");
 var funcs = require("./functions.js");
 
+spawnChances = [90, 2, 2, 2, 2, 2];
 
-
-for (var y = 0; y < WIDTH; y++) {
-    matrix[y] = []
-    var a = Math.floor(Math.random() * 6);
-    for (var x = 0; x < HEIGHT; x++) {
-        matrix[y][x] = a;
+function genMatrix() {
+    for (var y = 0; y < HEIGHT; y++) {
+        matrix[y] = []
+        for (var x = 0; x < WIDTH; x++) {
+            matrix[y][x] = funcs.choiceRandomId(spawnChances);
+        }
     }
 }
+genMatrix();
 
 
 for (var y = 0; y < matrix.length; y++) {
@@ -65,10 +67,8 @@ for (var y = 0; y < matrix.length; y++) {
 
 
 
-
-
-setInterval(drawServerayin, 200)
-function drawServerayin() {
+setInterval(serverDraw, 200)
+function serverDraw() {
     var entities = [].concat(grassArr, xotakerArr, predatorArr, creeperArr, monoremArr)
     for (var i in entities) {
         var entity = entities[i]
@@ -77,9 +77,8 @@ function drawServerayin() {
         }
     }
     io.sockets.emit("matrix", matrix)
-
 }
-console.log(matrix)
+
 io.on("connection", function (socket) {
 
 });
