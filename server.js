@@ -15,12 +15,12 @@ const WIDTH = 50
 const HEIGHT = 50
 
 
-var Grass = require("./Grass.js");
-var Xotaker = require("./xotaker.js");
-var Predator = require("./predator.js");
-var Creeper = require("./creeper.js");
-var Monorem = require("./monorem.js");
-var funcs = require("./functions.js");
+var Grass = require("./modules/Grass.js");
+var Xotaker = require("./modules/xotaker.js");
+var Predator = require("./modules/predator.js");
+var Creeper = require("./modules/creeper.js");
+var Monorem = require("./modules/monorem.js");
+var funcs = require("./modules/functions.js");
 
 spawnChances = [90, 2, 2, 2, 2, 2];
 

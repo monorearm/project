@@ -1,3 +1,4 @@
+var funcs = require("./functions.js");
 var Entity = require("./entity.js")
 module.exports = class Grass extends Entity {
     constructor(x, y) {
@@ -9,7 +10,8 @@ module.exports = class Grass extends Entity {
 
     mult() {
         var cell = this.chooseCell(0)
-        var empty = cell[Math.floor(Math.random() * cell.length)];
+        var empty = funcs.random(cell);
+        // var empty = cell[Math.floor(Math.random() * cell.length)];
         this.multiply++
         if (empty && this.multiply > 0) {
             var newX = empty[0]
