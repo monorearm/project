@@ -1,89 +1,90 @@
 <html>
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-
-
-    <meta charset="UTF-8">
-    <!-- <style>
-            #legend {position: absolute;top: 0;right: 0;width: 800px;} .legend-color {width: 30px;height: 30px;} td {border: 1px solid black; font-size: 14px; padding-left: 5px;}
-        </style> -->
+    <meta charset="utf8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        div {
+            display: inline-block;
+        }
+        h1 {
+            padding: 20px;
+            text-align: center;
+        }
+        body {
+            font-family: 'Noto Sans', sans-serif !important;
+        }
+    </style>
+    </style>
 </head>
 
 <body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h1>Ծրագրավորում III Երևան</h1>
+            </tr>
+            <tr>
+                <h1>Արման Մարտիրոսյան</h1>
+            </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Գույն</th>
+                <th scope="col">Նկարագրություն</th>
+                <th scope="col">Ծնվել է</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td scope="row" style="background-color:green;"></td>
+                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ Monorem-ը</td>
+                <td id="grassCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td scope="row" style="background-color:yellow;"></td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
+                    երբ նրան ուտում է գիշատիչը:</td>
+                <td id="xotakerCount"></td>
+            </tr>
 
-    <html>
+            <tr>
+                <th scope="row">3</th>
+                <td scope="row" style="background-color:red;"></td>
+                <td>Կարմիրը գիշատիչն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է Creeper-ը</td>
+                <td id="predatorCount"></td>
+            </tr>
 
 
+            <tr>
+                <th scope="row">4</th>
+                <td scope="row" style="background-color:blue;"></td>
+                <td>Կապույտը Creeper-է, որը բազմանում է N ցիկլը մեկ, պայթեցնում է մոտակա 8 վանդակնեևը , մահանում է երբ նրան ուտում է Գիշատիչը</td>
+                <td id="creeperCount"></td>
+            </tr>
 
+            <tr>
+                <th scope="row">5</th>
+                <td scope="row" style="background-color:#FBF8EF;"></td>
+                <td>Սպիտակը Monorem-է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ գիշատիչը</td>
+                <td id="monoremCount"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h1 id="timeOfSeason">Time of season: </h1>
 
+    
+    
 
-
-    <!-- <table id="legend">
-                        <tr>
-                            <td class="legend-color">Գույն</td>
-                            <td>Անվանում</td>
-                            <td>Շարժվում է</td>
-                            <td>Ուտում է</td>
-                            <td>Բազմանում է</td>
-                            <td>Սատկում է</td>
-                        </tr>
-                
-                        <tr>
-                            <td class="legend-color" style="background-color:gray"></td>
-                            <td>Դատարկ վանդակներ</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="legend-color" style="background-color:green"></td>
-                            <td>Խոտ</td>
-                            <td></td>
-                            <td></td>
-                            <td>Մոտակա 8 վանդակներում, 4 տակտը մեկ</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="legend-color" style="background-color:yellow"></td>
-                            <td>Խոտակեր</td>
-                            <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
-                            <td>Խոտերին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 1֊ով</td>
-                            <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 10֊ից ավել է</td>
-                            <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
-                        </tr>
-                        <tr>
-                            <td class="legend-color" style="background-color:red"></td>
-                            <td>Գիշատիչ</td>
-                            <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 2֊ով</td>
-                            <td>Խոտակերներին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
-                            <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 15֊ից ավել է</td>
-                            <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
-                        </tr>
-
-                        <tr>
-                                <td class="legend-color" style="background-color:#003399"></td>
-                                <td>Կրիպեր</td>
-                                <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
-                                <td>Խոտակերներին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
-                                <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 35֊ից ավել է</td>
-                                <td>Սատկում է, երբ էներգիան փոքր է 0֊ից, և պայթում է իր հետ պայթեցնելով մոտակա 8 վանդակնեը</td>
-                                <td>Մնացածից տարբերվում է նրանով, որ կարեղ են պայթել</td>
-                            </tr>
-
-                            <tr>
-                                    <td class="legend-color" style="background-color:white"></td>
-                                    <td>Մոնարեմ</td>
-                                    <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
-                                    <td>Խոտին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 3֊ով</td>
-                                    <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 25֊ից ավել է</td>
-                                    <td>Սատկում է, երբ ընդհանուր էներգիան փոքր է 0֊ից</td>
-                                    <td>Մնացածից տարբերվում է նրանով, որ ունեն ընադհանուր էներգիա</td>
-                                </tr>
-                    </table> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

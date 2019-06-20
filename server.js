@@ -8,13 +8,17 @@ app.get('/', function (req, res) {
 });
 server.listen(3000);
 
-
-
 matrix = [], grassArr = [], xotakerArr = [], predatorArr = [], creeperArr = [], monoremArr = [];
+grassHashiv = 0;
+xotakerHashiv = 0;
+predatorHashiv = 0;
+creeperHashiv = 0;
+monoremHashiv = 0;
+
 const WIDTH = 50
 const HEIGHT = 50
 
-
+season = 0;
 var Grass = require("./modules/Grass.js");
 var Xotaker = require("./modules/xotaker.js");
 var Predator = require("./modules/predator.js");
@@ -40,34 +44,36 @@ for (var y = 0; y < matrix.length; y++) {
         if (matrix[y][x] == 1) {
             var gr = new Grass(x, y)
             grassArr.push(gr)
+            grassHashiv++;
         }
         else if (matrix[y][x] == 2) {
             var xt = new Xotaker(x, y)
             xotakerArr.push(xt)
+            xotakerHashiv++;
         }
 
         else if (matrix[y][x] == 3) {
             var pr = new Predator(x, y)
             predatorArr.push(pr)
+            predatorHashiv++;
         }
 
         else if (matrix[y][x] == 4) {
             var cr = new Creeper(x, y)
             creeperArr.push(cr)
+            creeperHashiv++;
         }
 
         else if (matrix[y][x] == 5) {
             var mo = new Monorem(x, y)
             monoremArr.push(mo)
+            monoremHashiv++
         }
 
 
     }
 }
 
-
-
-setInterval(serverDraw, 200)
 function serverDraw() {
     var entities = [].concat(grassArr, xotakerArr, predatorArr, creeperArr, monoremArr)
     for (var i in entities) {
@@ -76,13 +82,32 @@ function serverDraw() {
             entities[i].next_tick()
         }
     }
-    io.sockets.emit("matrix", matrix)
+
+    let sendData = {
+        matrix: matrix,
+        grassCounter: grassHashiv,
+        xotakerCounter: xotakerHashiv,
+        predatorCounter: predatorHashiv,
+        creeperCounter: creeperHashiv,
+        monoremCounter: monoremHashiv
+    }
+    io.sockets.emit("data", sendData)
 }
 
-io.on("connection", function (socket) {
 
-});
+function changeSeason() {
+    if (season == 4) {
+        season = 1;
+    }
+    else {
+        season++;
+    }
+    io.sockets.emit("season", season);
+}
 
+
+setInterval(serverDraw, 200)
+setInterval(changeSeason, 6000);
 
 
 

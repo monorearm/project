@@ -12,7 +12,6 @@ module.exports = class Predator extends Entity {
     mult() {
         var cell = this.chooseCell(0)
         var empty = funcs.random(cell)
-        // var empty = cell[Math.floor(Math.random() * cell.length)];
         if (empty && this.energy > 15) {
             var newX = empty[0]
             var newY = empty[1]
@@ -27,9 +26,8 @@ module.exports = class Predator extends Entity {
         this.getNewDirections();
         var freeCells = this.chooseCell(0).concat(this.chooseCell(1));
         var cell = funcs.random(freeCells)
-        // var cell = freeCells[Math.floor(Math.random() * freeCells.length)];
         if (cell) {
-            this.energy--;
+            this.energy-=0.5;
             funcs.swap([this.x, this.y], cell);
         }
     }
@@ -37,7 +35,6 @@ module.exports = class Predator extends Entity {
     eat() {
         var foodNear = this.chooseCell(2).concat(this.chooseCell(5))
         var food = funcs.random(foodNear)
-        // var food = foodNear[Math.floor(Math.random() * foodNear.length)];
         if (food) {
             funcs.getEntityByPos(food).die();
             funcs.swap([this.x, this.y], food);

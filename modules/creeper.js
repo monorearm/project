@@ -13,9 +13,8 @@ module.exports = class Creeper extends Entity {
         this.getNewDirections();
         var freeCells = this.chooseCell(0).concat(this.chooseCell(1));
         var cell = funcs.random(freeCells);
-        // var cell = freeCells[Math.floor(Math.random() * freeCells.length)];
         if (cell) {
-            this.energy--;
+            this.energy-=0.5;
             funcs.swap([this.x, this.y], cell);
         }
     }
@@ -25,7 +24,6 @@ module.exports = class Creeper extends Entity {
     eat() {
         var cell = this.chooseCell(2)
         var food = funcs.random(cell)
-        // var food = cell[Math.floor(Math.random() * cell.length)];
         if (food) {
             funcs.getEntityByPos(food).die();
             funcs.swap([this.x, this.y], food);
@@ -37,7 +35,6 @@ module.exports = class Creeper extends Entity {
     mult() {
         var cell = this.chooseCell(0)
         var empty = funcs.random(cell);
-        // var empty = cell[Math.floor(Math.random() * cell.length)];
         if (empty && this.energy >= 35) {
             var newX = empty[0]
             var newY = empty[1]
