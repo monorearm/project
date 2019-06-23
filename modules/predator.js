@@ -18,6 +18,7 @@ module.exports = class Predator extends Entity {
             matrix[newY][newX] = 3
             var pr = new Predator(newX, newY)
             predatorArr.push(pr)
+            predatorHashiv++;
         }
     }
 
@@ -44,7 +45,10 @@ module.exports = class Predator extends Entity {
 
     next_tick() {
         this.mult()
-        this.move()
+        if(season != 3){
+            this.move()
+        }
+        
         this.eat()
         if (this.energy <= 0) {
             this.die();

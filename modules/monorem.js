@@ -36,6 +36,7 @@ module.exports = class Monorem extends Entity {
             matrix[newY][newX] = 5
             var mo = new Monorem(newX, newY)
             monoremArr.push(mo)
+            monoremHashiv++;
         }
     }
 
@@ -60,7 +61,10 @@ module.exports = class Monorem extends Entity {
     next_tick() {
         this.move()
         this.eat()
-        this.mult()
+        if(season != 0){
+            this.mult()
+        }
+       
         if (monoremsJointEnergy <= 0) {
             this.die();
         }

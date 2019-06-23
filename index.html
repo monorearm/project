@@ -2,25 +2,61 @@
 
 <head>
     <meta charset="utf8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <style>
         canvas {
             display: block;
             margin: 0 auto;
         }
+
         div {
             display: inline-block;
         }
+
         h1 {
             padding: 20px;
             text-align: center;
         }
+
         body {
             font-family: 'Noto Sans', sans-serif !important;
         }
+
+        #timeOfSeason {
+            font-size: 72px;
+            background: -webkit-linear-gradient(#eee, #333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        button {
+            display:block;
+            margin:0 auto;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        button:hover {
+            background-color: #3e8e41
+        }
+
+        button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
     </style>
-    </style>
+
 </head>
 
 <body>
@@ -43,21 +79,21 @@
             <tr>
                 <th scope="row">1</th>
                 <td scope="row" style="background-color:green;"></td>
-                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ Monorem-ը</td>
+                <td>Կանաչը խոտն է, որը բազմանում է աննդատ,բացի ձմեռվանից,մահանում է երբ նրան ուտում է խոտակերը, կամ Monorem-ը</td>
                 <td id="grassCount"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td scope="row" style="background-color:yellow;"></td>
-                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
-                    երբ նրան ուտում է գիշատիչը:</td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է 5 հատ խոտ ուտելուց հետո և մահանում է 10 հատ չուտելուց հետո, կամ երբ
+                    նրան ուտում է գիշատիչը:</td>
                 <td id="xotakerCount"></td>
             </tr>
 
             <tr>
                 <th scope="row">3</th>
                 <td scope="row" style="background-color:red;"></td>
-                <td>Կարմիրը գիշատիչն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է Creeper-ը</td>
+                <td>Կարմիրը գիշատիչն է, որը բազմանում է 5 ցիկլը մեկ,մահանում է երբ նրան ուտում է Creeper-ը</td>
                 <td id="predatorCount"></td>
             </tr>
 
@@ -65,23 +101,26 @@
             <tr>
                 <th scope="row">4</th>
                 <td scope="row" style="background-color:blue;"></td>
-                <td>Կապույտը Creeper-է, որը բազմանում է N ցիկլը մեկ, պայթեցնում է մոտակա 8 վանդակնեևը , մահանում է երբ նրան ուտում է Գիշատիչը</td>
+                <td>Կապույտը Creeper-է, որը բազմանում է  10 ցիկլը մեկ, պայթեցնում է մոտակա 8 վանդակնեևը , մահանում է երբ նրան
+                    ուտում է Գիշատիչը</td>
                 <td id="creeperCount"></td>
             </tr>
 
             <tr>
                 <th scope="row">5</th>
-                <td scope="row" style="background-color:#FBF8EF;"></td>
-                <td>Սպիտակը Monorem-է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ գիշատիչը</td>
+                <td scope="row" style="background-color:#73480E;"></td>
+                <td>Սպիտակը Monorem-է, որը բազմանում է 10 ցիկլը մեկ,մահանում է երբ նրան ուտում է գիշատիչը կամ երբ ընդհանուր էներգիան = 0 </td>
                 <td id="monoremCount"></td>
             </tr>
         </tbody>
     </table>
+    <button onclick="setRandomColor()">Random Color</button>
     <h1 id="timeOfSeason">Time of season: </h1>
+   
 
-    
-    
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>

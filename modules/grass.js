@@ -11,7 +11,6 @@ module.exports = class Grass extends Entity {
     mult() {
         var cell = this.chooseCell(0)
         var empty = funcs.random(cell);
-        // var empty = cell[Math.floor(Math.random() * cell.length)];
         this.multiply++
         if (empty && this.multiply > 0) {
             var newX = empty[0]
@@ -19,10 +18,12 @@ module.exports = class Grass extends Entity {
             matrix[newY][newX] = 1
             var newGr = new Grass(newX, newY)
             grassArr.push(newGr)
+            grassHashiv++;
         }
     }
 
     next_tick() {
-        this.mult()
+        if(season != 3 )
+            this.mult()
     }
 }

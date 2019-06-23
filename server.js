@@ -15,8 +15,8 @@ predatorHashiv = 0;
 creeperHashiv = 0;
 monoremHashiv = 0;
 
-const WIDTH = 50
-const HEIGHT = 50
+const WIDTH = 64
+const HEIGHT = 64
 
 season = 0;
 var Grass = require("./modules/Grass.js");
@@ -27,6 +27,7 @@ var Monorem = require("./modules/monorem.js");
 var funcs = require("./modules/functions.js");
 
 spawnChances = [90, 2, 2, 2, 2, 2];
+
 
 function genMatrix() {
     for (var y = 0; y < HEIGHT; y++) {
@@ -96,8 +97,8 @@ function serverDraw() {
 
 
 function changeSeason() {
-    if (season == 4) {
-        season = 1;
+    if (season == 3) {
+        season = 0;
     }
     else {
         season++;
@@ -106,8 +107,9 @@ function changeSeason() {
 }
 
 
-setInterval(serverDraw, 200)
+setInterval(serverDraw, 1000)
 setInterval(changeSeason, 6000);
+
 
 
 

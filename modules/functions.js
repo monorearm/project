@@ -1,5 +1,5 @@
-const WIDTH = 50
-const HEIGHT = 50
+const WIDTH = 64
+const HEIGHT = 64
 function getArrayById(id) {
     if (id == 0) {
         return null

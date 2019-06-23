@@ -11,15 +11,14 @@ module.exports = class Xotaker extends Entity {
     mult() {
         var cell = this.chooseCell(0)
         var empty = funcs.random(cell);
-        // var empty = cell[Math.floor(Math.random() * cell.length)];
-
         if (empty && this.energy > 10) {
             var newX = empty[0]
             var newY = empty[1]
             matrix[newY][newX] = 2
             var xt = new Xotaker(newX, newY)
             xotakerArr.push(xt)
-
+            xotakerHashiv++;
+           
         }
     }
 
@@ -27,7 +26,6 @@ module.exports = class Xotaker extends Entity {
         this.getNewDirections();
         var cell = this.chooseCell(0)
         var empty = funcs.random(cell);
-        // var empty =cell[Math.floor(Math.random() * cell.length)];
         if (empty) {
             this.energy--;
             var newX = empty[0]
@@ -43,7 +41,6 @@ module.exports = class Xotaker extends Entity {
     eat() {
         var cell = this.chooseCell(1)
         var food = funcs.random(cell);
-        // var food = cell[Math.floor(Math.random() * cell.length)];
         if (food) {
             funcs.getEntityByPos(food).die();
             funcs.swap([this.x, this.y], food);

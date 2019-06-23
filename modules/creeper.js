@@ -22,12 +22,12 @@ module.exports = class Creeper extends Entity {
 
 
     eat() {
-        var cell = this.chooseCell(2)
+        var cell = this.chooseCell(2).concat(this.chooseCell(3));
         var food = funcs.random(cell)
         if (food) {
             funcs.getEntityByPos(food).die();
             funcs.swap([this.x, this.y], food);
-            this.energy += 3
+            this.energy += 2
         }
     }
 
@@ -41,6 +41,7 @@ module.exports = class Creeper extends Entity {
             matrix[newY][newX] = 4
             var cr = new Creeper(newX, newY)
             creeperArr.push(cr)
+            creeperHashiv++;
         }
     }
 
